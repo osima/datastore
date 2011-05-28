@@ -1,0 +1,28 @@
+
+
+defaultTasks 'build'
+//defaultTasks 'build','javadoc','groovydoc'
+
+//apply plugin: 'java'
+apply plugin: 'groovy'
+archivesBaseName = "data-store"
+group='org.notehub.data'
+version='0.1'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.5'
+	compile group:'org.hsqldb', name:'hsqldb', version:'2.0.0'
+	testCompile group: 'junit', name: 'junit', version: '4.7'
+}
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+
