@@ -1,11 +1,15 @@
 package org.notehub.data.store;
 
 
-public class Db extends Base{
-	
+public class Db {// extends Base{
+
+	private Param param;
+	private Param getParam(){ return param; }
 	public Db(Param param){
-		super(param);
+		this.param=param;
 	}
+	
+	//public Db(Param param){ super(param); }
 	
 	public void init() throws Exception{
 		new Init(getParam()).process();
@@ -14,8 +18,8 @@ public class Db extends Base{
 		new Put(getParam()).process(item);
 	}
 	public Item getFirstItem() throws Exception{
-		Item firstItem = new GetFirstSystemItem(getParam()).process();//Resources.FIRST_SYSTEM_ITEM_KEY);
-		return new Get(getParam()).process(firstItem.getNextKey());//実際に返すのはスペシャルアイテムではない点に注意.
+		Item firstItem = new GetFirstSystemItem(getParam()).process();
+		return new Get(getParam()).process(firstItem.getNextKey());
 	}
 	public Item getLastItem() throws Exception {
 		return new GetLastItem(getParam()).process();
@@ -25,10 +29,6 @@ public class Db extends Base{
 		return new Get(getParam()).process(key);
 	}
 
-//	public ArrayList<String> getKeyList() throws Exception{
-//		return new GetAllKey(getParam()).process();
-//	}
-	
 	private class MyGetAllListener implements GetAllListener{
 		
 		private Param param;
@@ -42,20 +42,10 @@ public class Db extends Base{
 		public void callback(Item item) {
 			l.callback(item);
 		}
-//		@Override
-//		public void callback(String itemKey) {
-//			try{
-//				Item item = new Get(param).process(itemKey);
-//				l.callback(item);
-//			}
-//			catch(Exception ex){
-//				ex.printStackTrace();
-//			}
-//		}
 	}
 	
 	public void getAll(DbListener l) throws Exception{
-		getAll(l,true);
+		getAll(l,false);
 	}
 	
 	public void getAll(DbListener l,boolean desc) throws Exception{
