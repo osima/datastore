@@ -1,4 +1,4 @@
-package org.notehub.data.store;
+package jp.osima.blog.datastore;
 
 
 class Get extends AbstractGet {

@@ -1,5 +1,5 @@
 
-import org.notehub.data.store.*
+import jp.osima.blog.datastore.*
 import groovy.util.GroovyTestCase
 
 

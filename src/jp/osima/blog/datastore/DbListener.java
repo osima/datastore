@@ -1,4 +1,4 @@
-package org.notehub.data.store;
+package jp.osima.blog.datastore;
 
 public interface DbListener extends GetAllListener{
 
